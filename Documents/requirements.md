@@ -1,0 +1,10 @@
+- As a user, I want an encrypted file
+    - I want an encrypted file called `password.enc.txt` to hold email addresses and passwords from`password.txt.`
+    - I want the information uploaded into MongoDB using Mongoose
+- As a user, I want to know if there are valid credentials
+    - I want it to return true:
+        - the user’s email and password are in the password file
+    - I want it to return false if:
+        - the user gives an email not in the password file,
+        - the user gives an email without a password (or empty password string),
+        - the user gives a weak password
