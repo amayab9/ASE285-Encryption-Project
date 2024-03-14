@@ -1,6 +1,6 @@
 'use strict'
 const fs = require('fs');
-const util = require('./utility')
+const util = require('../util/utility')
 
 function passwordjs() {
     if (process.argv.length != 5) return 'false';
@@ -9,11 +9,11 @@ function passwordjs() {
     var email = process.argv[3]
     var password = process.argv[4]
 
-    ???
+    ///???
 }
 
 if (require.main === module) {
     console.log(passwordjs()) // print out true or false
 }
 
-module.exports = {???};
+module.exports = {passwordjs};
