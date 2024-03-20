@@ -1,61 +1,64 @@
-'use strict'
+'use strict';
+
 const fs = require('fs');
-const util = require('../util/utility')
-const {makepassword} = require("./makepassword");
+const { makepassword } = require('./makepassword');
 
-function passwordjs() {
-    if (process.argv.length != 5) return 'false';
+async function passwordjs() {
+    if (process.argv.length !== 5) {
+        console.log('Usage: node passwordjs.js <password_file> <email> <password>');
+        return false;
+    }
 
-    var filename = process.argv[2];
-    var email = process.argv[3];
-    var password = process.argv[4];
-    console.log(`Filename: ${filename}, Email: ${email}, Password: ${password}`);
+    const filename = process.argv[2];
+    const email = process.argv[3];
+    const password = process.argv[4];
 
-    /*if (!fs.existsSync(filename)) {
-        throw `${filename} does not exist!`
-    }*/
-    try{
-        //check that filename isn't blank
-        if (filename !== undefined){ //also check if it is a real file
-            //check if email and password is in password file, yes -> true, no -> false
-            if (email !== undefined){
-                //check if input has password
-                if (password !== undefined || password === ' '){
-                    //check weakness of password -> refactor for weakness
-                    if (password.length >= 12){
-                        //later implement more security for password
-                        //if everything is right -> take the filename into makepassword(filename, 'password.enc.txt')
-                        const startEncryptionProcess = makepassword(filename, '../auth/password.enc.txt')
-
-                    } else {
-                        console.log('Password is weak')
-                        return false
-                    }
-
-
-                } else {
-                    console.log('No password detected');
-                    return false
-                }
-
-            } else {
-                console.log('No email defined')
-                return false
-            }
-
-        } else {
-            console.log('No filename was entered');
+    try {
+        // Check if file exists
+        if (!fs.existsSync(filename)) {
+            console.log(`${filename} does not exist.`);
             return false;
         }
 
-    } catch (error){
-        console.log(error);
-    }
+        //check if email exists
+        const passwords = fs.readFileSync(filename, 'utf8').split('\n');
+        const emailExists = passwords.some(line => {
+            const [existingEmail] = line.split(':');
+            return existingEmail.trim() === email.trim();
+        });
 
+        if (!emailExists){
+            return false
+        }
+
+        //check password is empty
+        if (!password || password.trim() === '') {
+            //console.log('Password is empty.');
+            return false;
+        }
+
+        // Check if password meets criteria --add more later
+        if (password.length < 12) {
+            console.log('false');
+            return false;
+        }
+
+        // Append new email and password to password file
+        fs.appendFileSync(filename, `${email}:${password}\n`);
+
+        // update db with  new credentials
+        await makepassword(filename, '../auth/password.enc.txt');
+
+        console.log('true');
+        return true;
+    } catch (error) {
+        console.error('An error occurred:', error);
+        return false;
+    }
 }
 
 if (require.main === module) {
-    console.log(passwordjs()) // print out true or false
+    passwordjs();
 }
 
-module.exports = {passwordjs};
+module.exports = { passwordjs };
