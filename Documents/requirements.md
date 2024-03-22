@@ -9,4 +9,4 @@
         - the user gives an email without a password (or empty password string),
         - the user gives a weak password
     - I want the password to security
-      - the password length should be at least 12 characters long
+      - the password length should be at least 12 characters long 
