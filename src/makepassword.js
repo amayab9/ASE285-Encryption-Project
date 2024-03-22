@@ -3,7 +3,7 @@
 const { readFile, writeFile, hash } = require('../util/utility.js');
 const connectToDatabase = require('../util/config');
 const User = require("../models/User");
-const {disconnect} = require("mongoose");
+const { disconnect } = require("mongoose");
 const fs = require('fs');
 
 async function makepassword(passwordFileName, passwordEncFileName) {
@@ -29,9 +29,8 @@ async function makepassword(passwordFileName, passwordEncFileName) {
 
                 await User.create({ email: trimmedEmail, hashedPassword: hashedPassword });
 
-                //const encryptedPassword = `${trimmedEmail}:${hashedPassword}`;
-                //encryptedPasswords.push(encryptedPassword);
-                encryptedPasswords.push(`${trimmedEmail}:${hashedPassword}`);
+                const encryptedPassword = `${trimmedEmail}:${hashedPassword}`;
+                encryptedPasswords.push(encryptedPassword);
             } catch (error) {
                 console.error(`Error processing line: ${line}`, error);
             }
@@ -39,14 +38,11 @@ async function makepassword(passwordFileName, passwordEncFileName) {
 
         fs.writeFileSync(passwordEncFileName, encryptedPasswords.join('\n'))
         await disconnect();
-        //writeFile(encryptedPasswords, passwordEncFileName);
         console.log('Encrypted passwords saved');
     } catch (error) {
-        console.log(error);
+        console.error('An error occurred:', error);
     }
 }
-
-//console.log('../auth/password.txt', '../auth/password.enc.txt');
 
 if (require.main === module) {
     makepassword('../auth/password.txt', '../auth/password.enc.txt');
