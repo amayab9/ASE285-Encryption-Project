@@ -10,7 +10,7 @@ describe('makepassword function', () => {
 
     beforeAll(async () => {
         fs.writeFileSync(passwordFileName, 'user1@example.com:password1\n');
-        await mongoose.connect('mongodb+srv://bryanta21:s5aVWFsXGvRLcX11@cluster0.qdvgn0b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+        await mongoose.connect('mongodb+srv://bryanta21:zFTXDUdWEJv4aMGK@cluster0.qdvgn0b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
     });
 
     afterAll(async () => {
