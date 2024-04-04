@@ -24,7 +24,7 @@ async function makepassword(passwordFileName, passwordEncFileName) {
                 const existingUser = await User.findOne({ email: trimmedEmail });
 
                 if (existingUser) {
-                    console.log(`User email ${trimmedEmail} already exists, skipping..`);
+                    console.log(`User email ${trimmedEmail} already exists (skipped)`);
                     continue;
                 }
 

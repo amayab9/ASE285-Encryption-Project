@@ -52,3 +52,7 @@ Students should make sure their program passes the acceptance test.
 
 ##### Documents
 Make a user manual so your clients can use the application.
+
+##### Notes
+- any old .env/mongo connection strings do not work, database was trashed after final commit/push (passwords changed after every push)
+- justifications for the project is included in the Documentation folder

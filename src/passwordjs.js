@@ -6,8 +6,7 @@ const { validateCredentials } = require('./validateCredentials');
 
 async function passwordjs() {
     if (process.argv.length !== 5) {
-        // nodemon ./passwordjs.js ../auth/password.txt email password
-        console.log('Usage: nodemon passwordjs.js <password_file> <email> <password>');
+        // node ./passwordjs.js ../auth/password.txt email password
         return false;
     }
 
@@ -16,20 +15,12 @@ async function passwordjs() {
     const password = process.argv[4];
 
     try {
-        // Check if file exists
-        if (!fs.existsSync(filename)) {
-            console.log(`${filename} does not exist.`);
-            return false;
-        }
-
-        // Check if the email exists in the password file
-        const emailExists = await validateCredentials(filename, email, password);
-        if (!emailExists) {
+        const isValid = await validateCredentials(filename, email, password);
+        if (!isValid) {
             console.log('false');
             return false;
         }
 
-        // Call makepassword to encrypt and store the password
         await makepassword(filename, '../auth/password.enc.txt');
 
         console.log('true');
