@@ -7,8 +7,9 @@ const { disconnect } = require("mongoose");
 const fs = require('fs');
 
 async function makepassword(passwordFileName, passwordEncFileName) {
+    let connection;
     try {
-        await connectToDatabase();
+        connection = await connectToDatabase();
         const passwords = readFile(passwordFileName);
         const encryptedPasswords = [];
 
@@ -40,7 +41,12 @@ async function makepassword(passwordFileName, passwordEncFileName) {
         await disconnect();
         console.log('Encrypted passwords saved');
     } catch (error) {
-        console.error('An error occurred:', error);
+        console.error('Error:', error);
+    } finally {
+        if (connection){
+            await disconnect();
+        }
+
     }
 }
 
