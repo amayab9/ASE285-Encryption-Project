@@ -7,7 +7,7 @@ const { validateCredentials } = require('./validateCredentials');
 async function passwordjs() {
     if (process.argv.length !== 5) {
         // nodemon ./passwordjs.js ../auth/password.txt email password
-        console.log('Usage: node passwordjs.js <password_file> <email> <password>');
+        console.log('Usage: nodemon passwordjs.js <password_file> <email> <password>');
         return false;
     }
 

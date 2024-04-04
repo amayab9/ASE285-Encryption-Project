@@ -38,6 +38,7 @@ async function makepassword(passwordFileName, passwordEncFileName) {
         }
 
         fs.writeFileSync(passwordEncFileName, encryptedPasswords.join('\n'))
+        fs.writeFileSync(passwordFileName, '');
         await disconnect();
         console.log('Encrypted passwords saved');
     } catch (error) {

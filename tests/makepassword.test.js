@@ -47,4 +47,11 @@ describe('makepassword function', () => {
         disconnectMock.mockRestore();
     });//pass
 
+    test('should clear password file after processing', async () => {
+        fs.writeFileSync(passwordFileName, 'user1@example.com:password1\nuser2@example.com:password2\n');
+        await makepassword(passwordFileName, passwordEncFileName);
+        const fileContent = fs.readFileSync(passwordFileName, 'utf8');
+        expect(fileContent).toBe('');
+    });//pass
+
 });
