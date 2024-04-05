@@ -12,6 +12,7 @@ Example: `node ./passwordjs.js ../auth/password.txt thisismyemail23@email.com pa
 
 ## How it works
 Using the commands in the "How to use" section allows for you to create a hashed password.\
-- The password can be new (by changing it in the command) or it can be the password contained in the password file (by typing the same password in the command).
-- After running the command, the email and password get stored into a database, but with the hashed password.
-- The password file will be cleared to ensure no passwords are leaked after you run your command
+- The system checks if your email and password are in the provided password file.
+- The system will then automatically enter the rest of the emails and passwords in the password file if there are any (For more info: documents/justification.md)
+- Next, the password is hashed and sent to the database to be stored.
+- The password file will be cleared to ensure no passwords are leaked after you run your command.

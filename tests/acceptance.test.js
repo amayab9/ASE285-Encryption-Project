@@ -23,4 +23,5 @@ describe('Acceptance Tests', () => {
         expect(executeCommand('node ../src/passwordjs.js ../auth/password.enc.txt noname@hello.come 1234')).toBe(false);
         expect(executeCommand('node ../src/passwordjs.js ../auth/password.enc.txt alan.may@best.com')).toBe(false);
     });*/
+    //these are not working
 });
