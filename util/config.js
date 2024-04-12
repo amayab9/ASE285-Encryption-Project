@@ -9,8 +9,8 @@ const connectToDatabase = async () => {
     try {
         console.log('MONGO_URI:', process.env.MONGO_URI);
         //use connection string when .env decides to not work
-        await mongoose.connect("mongodb+srv://bryanta21:BEZOZ62Zfu4ueAtu@cluster0.qdvgn0b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-        //await mongoose.connect(connectionString);
+        //await mongoose.connect("mongodb+srv://bryanta21:<password>@cluster0.qdvgn0b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+        await mongoose.connect(connectionString);
 
         console.log('Connected to MongoDB');
     } catch (error) {

@@ -1,3 +1,3 @@
 - No test called passwordjstest.js for passwordjs.js (acceptance testing)
 - HW 8's directions states that we are given password.txt, and we need to encrypt them into password.enc.txt
-  - it will encrpyt all passwords if one matches for the sake of the assignment (simplicity and testing purposes)
+  - it will encrypt all passwords if one matches for the sake of the assignment (simplicity and testing purposes)

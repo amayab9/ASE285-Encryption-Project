@@ -21,7 +21,7 @@ describe('readFile function', () => {
         expect(lines).toEqual(['line1', 'line2', 'line3']);
     });
 
-    test('should throw error if file does not exist', () => {
+    test('throw error if file does not exist', () => {
         expect(() => readFile('./nonexistent.txt')).toThrow();
     });
 });

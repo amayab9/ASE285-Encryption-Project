@@ -26,7 +26,7 @@ async function passwordjs() {
         console.log('true');
         return true;
     } catch (error) {
-        console.error('An error occurred:', error);
+        console.error('Error:', error);
         return false;
     }
 }

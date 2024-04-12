@@ -10,6 +10,7 @@ describe('makepassword function', () => {
 
     beforeAll(async () => {
         fs.writeFileSync(passwordFileName, 'user1@example.com:password1\n');
+        //manually enter Uri if .env doesn't work
         await mongoose.connect('mongodb+srv://bryanta21:BEZOZ62Zfu4ueAtu@cluster0.qdvgn0b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
     });
 
@@ -19,7 +20,7 @@ describe('makepassword function', () => {
         await mongoose.disconnect();
     });
 
-    test('should execute successfully', async () => {
+    test('make password', async () => {
         await expect(makepassword(passwordFileName, passwordEncFileName)).resolves.not.toThrow();
     });
 
